@@ -703,8 +703,6 @@ namespace ctrlArchivos.Modelo
             //Autorizado por
             DdlIdAutorizadorExp.Text = miExp.id_autorizador_exp;
             buscarNombreCorrespondiente(DdlAutorizadorExp, DdlIdAutorizadorExp);
-
-
         }
 
         public int Actualizar()
@@ -778,6 +776,144 @@ namespace ctrlArchivos.Modelo
             topologica += charola + "-";
             topologica += caja;
             return topologica;
+        }
+
+        /**
+         * En este caso se coloca el método en este lugar debido a que se sigue la estructura 
+         * con la que se trabajo anteriormente
+         */ 
+        public void enlistarDatos(Table datos)
+        {
+            TableHeaderRow headerRow;
+            TableHeaderCell headerCell;
+            TableRow row;
+            TableCell celda;
+
+            headerRow = new TableHeaderRow();
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Clasificación";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Fondo";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Seccion";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Serie";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Numero";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Año";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Unidad Administrativa";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Area Productiva";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Responsable";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Resumen";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Asunto";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Funcion";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Acceso";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Valor primario";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Fecha Inicio";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Fecha Fin";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "No. Legado";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "No. Fojas";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Vinculado";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Exp. Vinculado";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Formato Soporte";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Plazo conservación";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Tipo";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Destino";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Valores Secundarios";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Ubicación Topológica";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Edificio";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Piso";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Pasillo";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Estante";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Charola";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Caja";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Fecha Alta";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Capturista";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Autorizador";
+            headerRow.Cells.Add(headerCell);
+            datos.Rows.Add(headerRow);
+            string consulta = "select * from expediente";
+            List<string[]> valores = obj1.buscarVarios(consulta);
+            if (valores != null)
+            {
+                for (int i = 0; i < valores.Count; i++)
+                {
+                    row = new TableRow();
+                    string[] fila_val = valores[i];
+
+                    for (int j = 0; j < fila_val.Length; j++)
+                    {
+                        celda = new TableCell();
+                        celda.Text = fila_val[j];
+                        row.Cells.Add(celda);
+                    }
+                    datos.Rows.Add(row);
+                }
+            }
         }
     }
 

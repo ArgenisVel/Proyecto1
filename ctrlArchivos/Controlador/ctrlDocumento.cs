@@ -311,5 +311,90 @@ namespace ctrlArchivos.Controlador
                 return 0;
             }
         }
+
+        /**
+         * Accedemos al modelo para traer los datos y mostrarlos en la tabla correspondiente
+         */ 
+        public void enlistarDatos(Table datos)
+        {
+            TableHeaderRow headerRow;
+            TableHeaderCell headerCell;
+            TableRow row;
+            TableCell celda;
+
+            headerRow = new TableHeaderRow();
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Expediente";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Id";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Tipo";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Estatus";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Prioridad";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Remitente";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "No. Documento";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Fecha";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Destinatario";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Fecha Recepción";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Hora Recepción";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Asunto";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Observaciones";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Anexos";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "No. Fojas";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Delegado";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Estatus Delegado";
+            headerRow.Cells.Add(headerCell);
+            headerCell = new TableHeaderCell();
+            headerCell.Text = "Fecha Delegación";
+            headerRow.Cells.Add(headerCell);
+            datos.Rows.Add(headerRow);
+            List<string[]> valores = documento.consultaAgregados();
+            if (valores != null)
+            {
+                for (int i = 0; i < valores.Count; i++)
+                {
+                    row = new TableRow();
+                    string[] fila_val = valores[i];
+
+                    for (int j = 0; j < fila_val.Length; j++)
+                    {
+                        celda = new TableCell();
+                        celda.Text = fila_val[j];
+                        row.Cells.Add(celda);
+                    }
+                    datos.Rows.Add(row);
+                }
+            }
+        }
     }
 }
